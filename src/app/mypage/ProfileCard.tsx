@@ -24,6 +24,8 @@ export interface ProfileCardProps {
   fileInputRef: RefObject<HTMLInputElement>;
 }
 
+const PASSWORDLESS_ENABLED = process.env.NEXT_PUBLIC_PASSWORDLESS_ENABLED === 'true';
+
 /** 마이페이지 전용 프로필 카드. 연필 hover는 내부 state, 나머지는 props/콜백으로 처리. */
 export function ProfileCard({
   profileUrl,
@@ -105,7 +107,7 @@ export function ProfileCard({
         >
           <UserCog size={22} />
         </button>
-        {passwordless ? (
+        {!PASSWORDLESS_ENABLED ? null : passwordless ? (
           <button
             type="button"
             className={styles.iconLink}
