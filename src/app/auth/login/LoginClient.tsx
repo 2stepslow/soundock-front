@@ -535,24 +535,20 @@ export default function LoginClient() {
       <form onSubmit={handleSubmit} className={styles.form} noValidate>
         <h1 className={styles.h1}>로그인</h1>
 
-        {DEMO_ID && (
-          <div className={styles.demoNotice}>
-            체험용 계정 {DEMO_ID} / {DEMO_PW}
-            <br />
-            결제는 테스트 모드로 동작하며 실제 결제가 발생하지 않습니다.
-            <button
-              type="button"
-              className={styles.demoFillButton}
-              onClick={() => { setEmail(DEMO_ID ?? ''); setPassword(DEMO_PW ?? ''); }}
-              disabled={loading}
-            >
-              데모 계정으로 입력 채우기
-            </button>
-          </div>
-        )}
-
         <label className={styles.label}>
-          이메일
+          <span className={styles.labelRow}>
+            이메일
+            {DEMO_ID && (
+              <button
+                type="button"
+                className={styles.demoFillButton}
+                onClick={() => { setEmail(DEMO_ID ?? ''); setPassword(DEMO_PW ?? ''); }}
+                disabled={loading}
+              >
+                데모 계정 사용하기
+              </button>
+            )}
+          </span>
           <input
             type="text"
             inputMode="email"
