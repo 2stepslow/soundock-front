@@ -540,6 +540,14 @@ export default function LoginClient() {
             체험용 계정 {DEMO_ID} / {DEMO_PW}
             <br />
             결제는 테스트 모드로 동작하며 실제 결제가 발생하지 않습니다.
+            <button
+              type="button"
+              className={styles.demoFillButton}
+              onClick={() => { setEmail(DEMO_ID ?? ''); setPassword(DEMO_PW ?? ''); }}
+              disabled={loading}
+            >
+              데모 계정으로 입력 채우기
+            </button>
           </div>
         )}
 
