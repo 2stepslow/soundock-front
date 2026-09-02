@@ -761,11 +761,15 @@
   opacity: 0.85;
 }
 
+.labelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .demoFillButton {
-  display: block;
-  margin-top: 8px;
   padding: 6px 12px;
-  border: 1px solid currentColor;
+  border: 1px solid #ddd;
   border-radius: 6px;
   background: transparent;
   color: inherit;
@@ -774,5 +778,5 @@
 }
 
 .demoFillButton:hover {
-  opacity: 0.8;
+  border-color: #111;
 }
