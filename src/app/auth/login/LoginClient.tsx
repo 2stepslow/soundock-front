@@ -52,6 +52,9 @@ export default function LoginClient() {
   const pwlsPollingConsecutiveErrorsRef = useRef(0);
   const pwlsResultPollingInFlightRef = useRef(false);
   const pwlsResultPollingCompletedRef = useRef(false);
+  const PASSWORDLESS_ENABLED = process.env.NEXT_PUBLIC_PASSWORDLESS_ENABLED === 'true';
+  const DEMO_ID = process.env.NEXT_PUBLIC_DEMO_ID ?? '';
+  const DEMO_PW = process.env.NEXT_PUBLIC_DEMO_PW ?? '';
 
   /** 승인 폴링(timeout id) + 로그인 60초 타이머 정리. 호출: 모드 전환, 언마운트, QR 모달 닫기. */
   const resetPasswordlessState = () => {
@@ -533,7 +536,19 @@ export default function LoginClient() {
         <h1 className={styles.h1}>로그인</h1>
 
         <label className={styles.label}>
-          이메일
+          <span className={styles.labelRow}>
+            이메일
+            {DEMO_ID && (
+              <button
+                type="button"
+                className={styles.demoFillButton}
+                onClick={() => { setEmail(DEMO_ID ?? ''); setPassword(DEMO_PW ?? ''); }}
+                disabled={loading}
+              >
+                데모 계정 사용하기
+              </button>
+            )}
+          </span>
           <input
             type="text"
             inputMode="email"
@@ -607,6 +622,7 @@ export default function LoginClient() {
           )}
         </label>
 
+        {PASSWORDLESS_ENABLED && (
         <div className={styles.radioRow} role="radiogroup" aria-label="로그인 방식">
           <label className={styles.radioItem}>
             <input
@@ -635,6 +651,7 @@ export default function LoginClient() {
             <span>Passwordless</span>
           </label>
         </div>
+        )}
 
         <button
           type="submit"
