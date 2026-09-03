@@ -31,8 +31,6 @@ function buildProductionCsp(
     "font-src 'self' https://fonts.gstatic.com data:",
     "img-src 'self' data: blob: https://pub-fee753f7dd044863a97ebf23105f4178.r2.dev https://i.ytimg.com https://img.youtube.com https://yt3.ggpht.com https://*.googleusercontent.com https://*.tosspayments.com https://static.toss.im",
     "connect-src 'self' https://www.googleapis.com https://www.google.com https://*.tosspayments.com",
-    "connect-src 'self' https://www.googleapis.com https://www.google.com https://*.tosspayments.com",
-    "connect-src 'self' https://api.soundock.live https://www.googleapis.com https://www.google.com https://*.tosspayments.com wss://www.soundock.live",
     `frame-src ${frameSrc}`,
   ].join("; ");
 
