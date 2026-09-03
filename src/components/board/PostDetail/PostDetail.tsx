@@ -82,6 +82,17 @@ export default function PostDetail({ category, boardId }: PostDetailProps) {
   const [attachmentDownloading, setAttachmentDownloading] = useState(false);
   const [spotlightPhotoIndex, setSpotlightPhotoIndex] = useState(0);
 
+    useEffect(() => {
+    const photos = post?.photos ?? post?.imageUrls ?? [];
+    if (photos.length < 2) return;
+    const preload = (i: number) => {
+      const img = new window.Image();
+      img.src = photos[(i + photos.length) % photos.length];
+    };
+    preload(spotlightPhotoIndex + 1);
+    preload(spotlightPhotoIndex - 1);
+  }, [post, spotlightPhotoIndex]);
+
   const menuRef = useRef<HTMLDivElement>(null);
   const nicknameMenuRef = useRef<HTMLDivElement>(null);
 
