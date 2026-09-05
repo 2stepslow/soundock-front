@@ -48,7 +48,7 @@ function formatCategoryType(categoryType: string): string {
 const COMMENT_CHARS_PER_LINE = 20;
 const COMMENT_MAX_LINES = 2;
 
-/** 댓글 내용: 한 줄 15자, 최대 2줄. 2줄 초과 시 말줄임(...) */
+/** 댓글 내용: 한 줄 20자, 최대 2줄. 2줄 초과 시 말줄임(...) */
 function formatCommentContent(content: string): string {
   if (!content) return '';
   const s = String(content).trim();
@@ -162,7 +162,7 @@ export function MyCommentsSection({ onLoadingChange }: MyCommentsSectionProps = 
                         {formatCommentContent(comment.content)}
                       </button>
                     </div>
-                    <div className={styles.tableCell}>
+                    <div className={`${styles.tableCell} ${styles.commentContentCell}`}>
                       <button
                         type="button"
                         className={styles.cellLinkBtn}
@@ -174,7 +174,7 @@ export function MyCommentsSection({ onLoadingChange }: MyCommentsSectionProps = 
                           router.push(`/boards/${comment.boardId}`);
                         }}
                       >
-                        {comment.title}
+                        {formatCommentContent(comment.title)}
                       </button>
                     </div>
                     <div className={styles.tableCell}>
